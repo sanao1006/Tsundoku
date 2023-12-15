@@ -2,6 +2,7 @@ package app.sanao1006.tsundoku.data.di
 
 import android.content.Context
 import androidx.room.Room
+import app.sanao1006.tsundoku.data.db.BookDao
 import app.sanao1006.tsundoku.data.db.TsundokuDb
 import dagger.Module
 import dagger.Provides
@@ -13,6 +14,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
+    @Provides
+    fun provideRoomDao(db: TsundokuDb): BookDao = db.bookDao()
+
     @Provides
     @Singleton
     fun provideTsundokuDatabase(
