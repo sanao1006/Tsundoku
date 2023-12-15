@@ -1,4 +1,4 @@
-package app.sanao1006.tsundoku.ui.theme
+package app.sanao1006.tsundoku.data.desiginsystem
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
