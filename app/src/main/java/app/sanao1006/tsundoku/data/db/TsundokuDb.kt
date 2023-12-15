@@ -8,5 +8,5 @@ import androidx.room.RoomDatabase
     version = 1
 )
 abstract class TsundokuDb : RoomDatabase() {
-    abstract fun bookDao() : BookDao
+    abstract fun bookDao(): BookDao
 }

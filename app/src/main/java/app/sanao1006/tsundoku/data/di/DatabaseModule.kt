@@ -17,7 +17,7 @@ object DatabaseModule {
     @Singleton
     fun provideTsundokuDatabase(
         @ApplicationContext context: Context
-    ) : TsundokuDb = Room.databaseBuilder(
+    ): TsundokuDb = Room.databaseBuilder(
         context = context,
         klass = TsundokuDb::class.java,
         name = "tsundoku-database"

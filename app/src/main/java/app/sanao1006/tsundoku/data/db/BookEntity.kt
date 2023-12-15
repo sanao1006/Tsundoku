@@ -14,11 +14,11 @@ data class BookEntity(
     @ColumnInfo(name = "description")
     val description: String? = "",
     @ColumnInfo(name = "total_page")
-    val totalPage : Int,
+    val totalPage: Int,
     @ColumnInfo(name = "now_page")
-    var nowPage : Int = 0,
+    var nowPage: Int = 0,
     @ColumnInfo(name = "created_at")
-    val createdAt : String,
+    val createdAt: String,
     @ColumnInfo(name = "updated_at")
-    val updatedAt : String,
+    val updatedAt: String,
 )
