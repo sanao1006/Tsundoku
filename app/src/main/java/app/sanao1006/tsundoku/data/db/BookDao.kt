@@ -12,8 +12,8 @@ interface BookDao {
     suspend fun getBooks(): List<BookEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBook(bookstores: BookEntity)
+    suspend fun insertBook(book: BookEntity)
 
     @Update(entity = BookEntity::class)
-    suspend fun updateBookInfo(bookstore: BookEntity)
+    suspend fun updateBookInfo(book: BookEntity)
 }
