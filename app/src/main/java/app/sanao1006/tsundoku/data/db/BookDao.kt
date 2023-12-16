@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import app.sanao1006.tsundoku.data.model.Book
 
 @Dao
 interface BookDao {
@@ -13,8 +12,8 @@ interface BookDao {
     suspend fun getBooks(): List<BookEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBook(book: Book)
+    suspend fun insertBook(book: BookEntity)
 
     @Update(entity = BookEntity::class)
-    suspend fun updateBookInfo(book: Book)
+    suspend fun updateBookInfo(book: BookEntity)
 }

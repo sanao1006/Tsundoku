@@ -71,5 +71,7 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.bundles.coroutines)
     implementation(libs.bundles.room)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
     testImplementation(libs.junit)
 }

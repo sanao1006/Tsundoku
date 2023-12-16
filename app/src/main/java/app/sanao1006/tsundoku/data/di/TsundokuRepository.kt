@@ -1,6 +1,7 @@
 package app.sanao1006.tsundoku.data.di
 
 import app.sanao1006.tsundoku.data.db.BookDao
+import app.sanao1006.tsundoku.data.db.BookEntity
 import app.sanao1006.tsundoku.data.model.Book
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -27,11 +28,11 @@ class TsundokuRepository @Inject constructor(
             }
         }
     }
-    suspend fun insertBook(book: Book) = withContext(ioDispatcher) {
+    suspend fun insertBook(book: BookEntity) = withContext(ioDispatcher) {
         bookDao.insertBook(book = book)
     }
 
-    suspend fun updateBookInfo(book: Book) = withContext(ioDispatcher) {
+    suspend fun updateBookInfo(book: BookEntity) = withContext(ioDispatcher) {
         bookDao.updateBookInfo(book = book)
     }
 }

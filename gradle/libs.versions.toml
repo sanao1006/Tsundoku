@@ -79,9 +79,8 @@ coroutines = [
     "kotlinx-coroutines-test"
 ]
 room = [
-    "room-compiler",
+    "room-runtime",
     "room-ktx",
-    "room-runtime"
 ]
 
 [plugins]
