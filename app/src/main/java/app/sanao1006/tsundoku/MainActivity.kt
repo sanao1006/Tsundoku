@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import app.sanao1006.tsundoku.data.desiginsystem.TsundokuTheme
+import app.sanao1006.tsundoku.presentation.create.TsundokuCreateScreen
 import app.sanao1006.tsundoku.presentation.mainscreen.TsundokuScreen
 import app.sanao1006.tsundoku.presentation.mainscreen.TsundokuScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,8 +43,13 @@ private fun TsundokuApp(viewModel: TsundokuScreenViewModel = hiltViewModel()) {
         composable(route = "tsundokus") {
             TsundokuScreen(
                 viewModel = viewModel,
-                onFabClick = { },
+                onFabClick = { navController.navigate("create") },
                 onItemClick = { }
+            )
+        }
+        composable("create") {
+            TsundokuCreateScreen(
+                onClick = { navController.popBackStack() }
             )
         }
     }
