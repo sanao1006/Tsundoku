@@ -1,4 +1,4 @@
-package app.sanao1006.tsundoku.presentation.create
+package app.sanao1006.tsundoku.feature.create
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -11,7 +11,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import app.sanao1006.tsundoku.presentation.mainscreen.TsundokuScreenViewModel
 
 @Composable
 fun TsundokuCreateScreen(

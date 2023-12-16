@@ -1,4 +1,4 @@
-package app.sanao1006.tsundoku.presentation.mainscreen
+package app.sanao1006.tsundoku.feature.mainscreen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues

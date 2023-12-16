@@ -13,9 +13,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import app.sanao1006.tsundoku.data.desiginsystem.TsundokuTheme
-import app.sanao1006.tsundoku.presentation.create.TsundokuCreateScreen
-import app.sanao1006.tsundoku.presentation.mainscreen.TsundokuScreen
-import app.sanao1006.tsundoku.presentation.mainscreen.TsundokuScreenViewModel
+import app.sanao1006.tsundoku.feature.create.TsundokuCreateScreen
+import app.sanao1006.tsundoku.feature.mainscreen.TsundokuScreen
+import app.sanao1006.tsundoku.feature.mainscreen.TsundokuScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

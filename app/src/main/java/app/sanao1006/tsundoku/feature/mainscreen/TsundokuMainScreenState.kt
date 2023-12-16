@@ -1,4 +1,4 @@
-package app.sanao1006.tsundoku.presentation.mainscreen
+package app.sanao1006.tsundoku.feature.mainscreen
 
 import app.sanao1006.tsundoku.data.model.Book
 

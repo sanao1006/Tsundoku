@@ -1,4 +1,4 @@
-package app.sanao1006.tsundoku.presentation.mainscreen
+package app.sanao1006.tsundoku.feature.mainscreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
