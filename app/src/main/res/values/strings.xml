@@ -5,4 +5,5 @@
     <string name="pref_create_tsundoku_description">説明文を入力してください(任意)</string>
     <string name="pref_create_tsundoku_page_count">総ページ数を入力してください</string>
     <string name="create_tsundoku">作成！</string>
+    <string name="description_when_tsundoku_empty">溜まっている積読をリスト化しましょう！</string>
 </resources>

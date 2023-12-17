@@ -19,7 +19,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import io.sanao1006.tsundoku.R
 
 @Composable
 fun TsundokuScreen(
@@ -46,17 +48,21 @@ fun TsundokuScreen(
                 .padding(innerPadding)
                 .fillMaxSize()
         ) {
-            LazyColumn(
-                contentPadding = PaddingValues(
-                    vertical = 8.dp,
-                    horizontal = 8.dp
-                )
-            ) {
-                items(state.tsundokus) { book ->
-                    TsundokuItem(
-                        book = book,
-                        onItemClick = { id -> onItemClick(id) }
+            if (state.tsundokus.isEmpty()) {
+                Text(stringResource(R.string.description_when_tsundoku_empty))
+            } else {
+                LazyColumn(
+                    contentPadding = PaddingValues(
+                        vertical = 8.dp,
+                        horizontal = 8.dp
                     )
+                ) {
+                    items(state.tsundokus) { book ->
+                        TsundokuItem(
+                            book = book,
+                            onItemClick = { id -> onItemClick(id) }
+                        )
+                    }
                 }
             }
             if (state.isLoading) CircularProgressIndicator()
