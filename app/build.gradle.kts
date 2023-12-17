@@ -73,5 +73,6 @@ dependencies {
     implementation(libs.bundles.room)
     annotationProcessor(libs.room.compiler)
     ksp(libs.room.compiler)
+    implementation(libs.kotlinx.datetime)
     testImplementation(libs.junit)
 }

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Tsundoku</string>
+    <string name="title_create_tsundoku">積読作成</string>
+    <string name="pref_create_tsundoku_title">タイトルを入力してください</string>
+    <string name="pref_create_tsundoku_description">説明文を入力してください(任意)</string>
+    <string name="pref_create_tsundoku_page_count">総ページ数を入力してください</string>
+    <string name="create_tsundoku">作成！</string>
 </resources>

@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import app.sanao1006.tsundoku.data.desiginsystem.TsundokuTheme
 import app.sanao1006.tsundoku.feature.create.TsundokuCreateScreen
+import app.sanao1006.tsundoku.feature.create.TsundokuCreateViewModel
 import app.sanao1006.tsundoku.feature.mainscreen.TsundokuScreen
 import app.sanao1006.tsundoku.feature.mainscreen.TsundokuScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,19 +38,26 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun TsundokuApp(viewModel: TsundokuScreenViewModel = hiltViewModel()) {
+private fun TsundokuApp(
+    tsundokuScreenViewModel: TsundokuScreenViewModel = hiltViewModel(),
+    tsundokuCreateViewModel: TsundokuCreateViewModel = hiltViewModel(),
+) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "tsundokus") {
         composable(route = "tsundokus") {
             TsundokuScreen(
-                viewModel = viewModel,
+                viewModel = tsundokuScreenViewModel,
                 onFabClick = { navController.navigate("create") },
                 onItemClick = { }
             )
         }
         composable("create") {
             TsundokuCreateScreen(
-                onClick = { navController.popBackStack() }
+                onBackButtonClick = { navController.popBackStack() },
+                onCreateButtonClick = {
+                    tsundokuCreateViewModel.insertTsundoku()
+                    navController.popBackStack()
+                }
             )
         }
     }
