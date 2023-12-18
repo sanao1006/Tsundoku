@@ -15,20 +15,7 @@ class TsundokuRepository @Inject constructor(
     private val bookDao: BookDao,
     @IODispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
-    fun getBooks(): Flow<List<Book>> =
-        bookDao.getBooks().map {
-            it.map { bookEntity ->
-                Book(
-                    id = bookEntity.id,
-                    description = bookEntity.description ?: "",
-                    title = bookEntity.title ?: "",
-                    totalPage = bookEntity.totalPage,
-                    nowPage = bookEntity.nowPage,
-                    createAt = bookEntity.createdAt,
-                    updatedAt = bookEntity.updatedAt
-                )
-            }
-        }
+    fun getBooks(): Flow<List<Book>> = bookDao.getBooks().map { it.map(BookEntity::toBook) }
 
     suspend fun insertBook(book: BookEntity) = withContext(ioDispatcher) {
         bookDao.insertBook(book = book)
