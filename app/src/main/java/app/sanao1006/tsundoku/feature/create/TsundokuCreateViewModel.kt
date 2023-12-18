@@ -33,6 +33,13 @@ class TsundokuCreateViewModel @Inject constructor(
             createAt = getCurrentTime(),
             updatedAt = getCurrentTime(),
         )
+        clear()
+    }
+
+    private fun clear() {
+        _title.value = ""
+        _description.value = ""
+        _totalPage.value = ""
     }
 
     fun onTitleValueChange(title: String) {
