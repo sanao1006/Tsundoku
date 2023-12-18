@@ -19,8 +19,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -29,22 +27,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import app.sanao1006.tsundoku.data.model.InputForCreateTsundoku
 import io.sanao1006.tsundoku.R
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun TsundokuCreateScreen(
+    input: InputForCreateTsundoku,
     onBackButtonClick: () -> Unit,
     onCreateButtonClick: () -> Unit,
+    onTitleValueChange: (String) -> Unit,
+    onDescriptionValueChange: (String) -> Unit,
+    onTotalPageValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: TsundokuCreateViewModel = hiltViewModel()
 ) {
-    val title by viewModel.title.collectAsState()
-    val description by viewModel.description.collectAsState()
-    val totalPage by viewModel.totalPage.collectAsState()
-
     val keyboardController = LocalSoftwareKeyboardController.current
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -60,8 +58,8 @@ fun TsundokuCreateScreen(
         Box(modifier = modifier.padding(innerPadding)) {
             Column {
                 OutlinedTextField(
-                    value = title,
-                    onValueChange = { viewModel.onTitleValueChange(it) },
+                    value = input.title,
+                    onValueChange = onTitleValueChange,
                     label = { Text(stringResource(R.string.pref_create_tsundoku_title)) },
                     modifier = Modifier
                         .padding(16.dp)
@@ -69,8 +67,8 @@ fun TsundokuCreateScreen(
                 )
 
                 OutlinedTextField(
-                    value = description,
-                    onValueChange = { viewModel.onDescriptionValueChange(it) },
+                    value = input.description,
+                    onValueChange = onDescriptionValueChange,
                     label = { Text(stringResource(R.string.pref_create_tsundoku_description)) },
                     modifier = Modifier
                         .padding(16.dp)
@@ -78,8 +76,8 @@ fun TsundokuCreateScreen(
                 )
 
                 OutlinedTextField(
-                    value = totalPage,
-                    onValueChange = { viewModel.onTotalPageValueChange(it) },
+                    value = input.totalPage,
+                    onValueChange = onTotalPageValueChange,
                     label = { Text(stringResource(R.string.pref_create_tsundoku_page_count)) },
                     keyboardOptions = KeyboardOptions.Default.copy(
                         keyboardType = KeyboardType.Number,

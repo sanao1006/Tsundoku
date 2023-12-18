@@ -7,12 +7,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import app.sanao1006.tsundoku.data.desiginsystem.TsundokuTheme
+import app.sanao1006.tsundoku.data.model.InputForCreateTsundoku
 import app.sanao1006.tsundoku.feature.create.TsundokuCreateScreen
 import app.sanao1006.tsundoku.feature.create.TsundokuCreateViewModel
 import app.sanao1006.tsundoku.feature.mainscreen.TsundokuScreen
@@ -52,8 +55,19 @@ private fun TsundokuApp(
             )
         }
         composable("create") {
+            val title by tsundokuCreateViewModel.title.collectAsState()
+            val description by tsundokuCreateViewModel.description.collectAsState()
+            val totalPage by tsundokuCreateViewModel.totalPage.collectAsState()
             TsundokuCreateScreen(
+                input = InputForCreateTsundoku(
+                    title = title,
+                    description = description,
+                    totalPage = totalPage,
+                ),
                 onBackButtonClick = { navController.popBackStack() },
+                onTitleValueChange = tsundokuCreateViewModel::onTitleValueChange,
+                onDescriptionValueChange = tsundokuCreateViewModel::onDescriptionValueChange,
+                onTotalPageValueChange = tsundokuCreateViewModel::onTotalPageValueChange,
                 onCreateButtonClick = {
                     tsundokuCreateViewModel.insertTsundoku()
                     navController.popBackStack()
