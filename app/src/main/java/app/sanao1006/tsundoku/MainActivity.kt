@@ -21,6 +21,7 @@ import app.sanao1006.tsundoku.data.model.InputForCreateTsundoku
 import app.sanao1006.tsundoku.feature.create.TsundokuCreateScreen
 import app.sanao1006.tsundoku.feature.create.TsundokuCreateViewModel
 import app.sanao1006.tsundoku.feature.detail.TsundokuDetailScreen
+import app.sanao1006.tsundoku.feature.detail.TsundokuDetailScreenViewModel
 import app.sanao1006.tsundoku.feature.mainscreen.TsundokuScreen
 import app.sanao1006.tsundoku.feature.mainscreen.TsundokuScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,6 +48,7 @@ class MainActivity : ComponentActivity() {
 private fun TsundokuApp(
     tsundokuScreenViewModel: TsundokuScreenViewModel = hiltViewModel(),
     tsundokuCreateViewModel: TsundokuCreateViewModel = hiltViewModel(),
+    tsundokuDetailScreenViewModel: TsundokuDetailScreenViewModel = hiltViewModel()
 ) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "tsundokus") {
@@ -66,7 +68,12 @@ private fun TsundokuApp(
             )
         ) { entry ->
             val bookId = entry.arguments?.getInt("book_id")
-            TsundokuDetailScreen()
+            tsundokuDetailScreenViewModel.getBook(bookId!!)
+            val tsundoku by tsundokuDetailScreenViewModel.book.collectAsState()
+            TsundokuDetailScreen(
+                book = tsundoku,
+                onBackButtonClick = { navController.popBackStack() }
+            )
         }
         composable("create") {
             val title by tsundokuCreateViewModel.title.collectAsState()

@@ -17,6 +17,8 @@ class TsundokuRepository @Inject constructor(
 ) {
     fun getBooks(): Flow<List<Book>> = bookDao.getBooks().map { it.map(BookEntity::toBook) }
 
+    fun getBook(bookId: Int): Flow<Book> = bookDao.getBook(bookId).map { it.toBook() }
+
     suspend fun insertBook(book: BookEntity) = withContext(ioDispatcher) {
         bookDao.insertBook(book = book)
     }
