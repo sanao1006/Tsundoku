@@ -27,10 +27,12 @@ class TsundokuScreenViewModel @Inject constructor(
 
     private fun getBooks() {
         viewModelScope.launch {
-            _tsundokuState.value = TsundokuMainScreenState(
-                tsundokus = tsundokuRepository.getBooks(),
-                isLoading = false,
-            )
+            tsundokuRepository.getBooks().collect {
+                _tsundokuState.value = TsundokuMainScreenState(
+                    tsundokus = it,
+                    isLoading = false,
+                )
+            }
         }
     }
 }
