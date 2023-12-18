@@ -95,6 +95,7 @@ fun TsundokuCreateScreen(
 
                 Button(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
+                    enabled = !input.title.isNullOrBlank() && !input.totalPage.isNullOrBlank(),
                     onClick = onCreateButtonClick
                 ) {
                     Icon(Icons.Default.Done, "")
