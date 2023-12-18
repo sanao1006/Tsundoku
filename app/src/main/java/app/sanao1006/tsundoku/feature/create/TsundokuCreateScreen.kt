@@ -26,7 +26,9 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import app.sanao1006.tsundoku.data.desiginsystem.TsundokuTheme
 import app.sanao1006.tsundoku.data.model.InputForCreateTsundoku
 import io.sanao1006.tsundoku.R
 
@@ -104,5 +106,43 @@ fun TsundokuCreateScreen(
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true, name = "テキストあり")
+@Composable
+fun PreviewTsundokuCreateScreen() {
+    TsundokuTheme {
+        TsundokuCreateScreen(
+            input = InputForCreateTsundoku(
+                title = "タイトル",
+                description = "",
+                totalPage = "200",
+            ),
+            onBackButtonClick = {},
+            onCreateButtonClick = {},
+            onTitleValueChange = {},
+            onDescriptionValueChange = {},
+            onTotalPageValueChange = {}
+        )
+    }
+}
+
+@Preview(showBackground = true, name = "テキストなし")
+@Composable
+fun PreviewTsundokuCreateScreenWithoutText() {
+    TsundokuTheme {
+        TsundokuCreateScreen(
+            input = InputForCreateTsundoku(
+                title = "",
+                description = "",
+                totalPage = "",
+            ),
+            onBackButtonClick = {},
+            onCreateButtonClick = {},
+            onTitleValueChange = {},
+            onDescriptionValueChange = {},
+            onTotalPageValueChange = {}
+        )
     }
 }
