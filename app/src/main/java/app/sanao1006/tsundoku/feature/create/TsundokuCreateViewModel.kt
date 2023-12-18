@@ -57,6 +57,6 @@ class TsundokuCreateViewModel @Inject constructor(
     private fun getCurrentTime(): String {
         val currentInstant = Clock.System.now()
         val currentLocalDateTIme = currentInstant.toLocalDateTime(TimeZone.currentSystemDefault())
-        return currentLocalDateTIme.toString()
+        return currentLocalDateTIme.date.toString()
     }
 }
