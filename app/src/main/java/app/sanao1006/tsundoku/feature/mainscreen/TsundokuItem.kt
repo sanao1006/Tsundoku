@@ -30,7 +30,11 @@ fun TsundokuItem(
             modifier = Modifier.padding(8.dp)
         ) {
             TsundokuIcon(Icons.Default.MenuBook, Modifier.weight(0.15f))
-            TsundokuInfo(book.title, book.description, Modifier.weight(0.7f))
+            TsundokuInfo(
+                truncateString(book.title, maxLength = 23),
+                truncateString(book.description),
+                Modifier.weight(0.7f)
+            )
         }
     }
 }
@@ -44,4 +48,12 @@ fun TsundokuIcon(icon: ImageVector, modifier: Modifier, onIconClick: () -> Unit 
             .padding(8.dp)
             .clickable { onIconClick() }
     )
+}
+
+private fun truncateString(input: String, maxLength: Int = 32): String {
+    return if (input.length <= maxLength) {
+        input
+    } else {
+        input.substring(0, maxLength) + "..."
+    }
 }
