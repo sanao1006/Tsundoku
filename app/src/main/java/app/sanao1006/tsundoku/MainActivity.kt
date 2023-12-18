@@ -11,13 +11,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import app.sanao1006.tsundoku.data.desiginsystem.TsundokuTheme
 import app.sanao1006.tsundoku.data.model.InputForCreateTsundoku
 import app.sanao1006.tsundoku.feature.create.TsundokuCreateScreen
 import app.sanao1006.tsundoku.feature.create.TsundokuCreateViewModel
+import app.sanao1006.tsundoku.feature.detail.TsundokuDetailScreen
 import app.sanao1006.tsundoku.feature.mainscreen.TsundokuScreen
 import app.sanao1006.tsundoku.feature.mainscreen.TsundokuScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,8 +54,19 @@ private fun TsundokuApp(
             TsundokuScreen(
                 viewModel = tsundokuScreenViewModel,
                 onFabClick = { navController.navigate("create") },
-                onItemClick = { }
+                onItemClick = { navController.navigate("books/$it") }
             )
+        }
+        composable(
+            route = "books/{book_id}",
+            arguments = listOf(
+                navArgument("book_id") {
+                    type = NavType.IntType
+                }
+            )
+        ) { entry ->
+            val bookId = entry.arguments?.getInt("book_id")
+            TsundokuDetailScreen()
         }
         composable("create") {
             val title by tsundokuCreateViewModel.title.collectAsState()
