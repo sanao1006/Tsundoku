@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import app.sanao1006.tsundoku.data.desiginsystem.Typography
 import app.sanao1006.tsundoku.data.model.Book
 import io.sanao1006.tsundoku.R
-import kotlin.math.floor
 
 @Composable
 fun TsundokuDetailScreen(
@@ -70,7 +69,7 @@ fun TsundokuDetailScreen(
                             horizontalAlignment = Alignment.Start
                         ) {
                             Text(text = "進捗率", fontWeight = FontWeight.Bold)
-                            Text("${floor(2.0 / book.totalPage.toDouble())}% (現在: ${book.nowPage}, 総ページ数: ${book.totalPage})")
+                            Text("${(book.nowPage.toDouble() / book.totalPage.toDouble()) * 100.0}% (現在: ${book.nowPage}, 総ページ数: ${book.totalPage})")
                             Spacer(modifier = Modifier.size(16.dp))
                             Text("最終更新: ${book.updatedAt}")
                             Text("登録日: ${book.createAt}")
