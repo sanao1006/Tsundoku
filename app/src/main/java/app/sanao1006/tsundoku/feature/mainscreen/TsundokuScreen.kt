@@ -1,9 +1,11 @@
 package app.sanao1006.tsundoku.feature.mainscreen
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
@@ -14,6 +16,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.PostAdd
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -22,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import app.sanao1006.tsundoku.data.desiginsystem.Typography
 import io.sanao1006.tsundoku.R
 import kotlinx.coroutines.launch
 
@@ -46,13 +50,20 @@ fun TsundokuScreen(
         }
     ) { innerPadding ->
         Box(
-            contentAlignment = Alignment.TopCenter,
+            contentAlignment = if (state.tsundokus.isEmpty()) {
+                Alignment.Center
+            } else {
+                Alignment.TopCenter
+            },
             modifier = Modifier
                 .padding(innerPadding)
-                .fillMaxSize()
+                .fillMaxSize(),
         ) {
             if (state.tsundokus.isEmpty()) {
-                Text(stringResource(R.string.description_when_tsundoku_empty))
+                Column {
+                    Icon(imageVector = Icons.Default.PostAdd, contentDescription = "", modifier = Modifier.align(Alignment.CenterHorizontally).size(64.dp))
+                    Text(text = stringResource(R.string.description_when_tsundoku_empty), style = Typography.h6)
+                }
             } else {
                 LazyColumn(
                     contentPadding = PaddingValues(
