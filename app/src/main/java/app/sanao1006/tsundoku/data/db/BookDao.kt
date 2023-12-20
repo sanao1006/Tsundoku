@@ -20,4 +20,7 @@ interface BookDao {
 
     @Update(entity = BookEntity::class)
     suspend fun updateBookInfo(book: BookEntity)
+
+    @Query("DELETE FROM books WHERE id = :bookId")
+    fun deleteBook(bookId: Int)
 }

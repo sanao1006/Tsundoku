@@ -26,4 +26,8 @@ class TsundokuRepository @Inject constructor(
     suspend fun updateBookInfo(book: BookEntity) = withContext(ioDispatcher) {
         bookDao.updateBookInfo(book = book)
     }
+
+    suspend fun deleteBook(bookId: Int) = withContext(ioDispatcher) {
+        bookDao.deleteBook(bookId = bookId)
+    }
 }
