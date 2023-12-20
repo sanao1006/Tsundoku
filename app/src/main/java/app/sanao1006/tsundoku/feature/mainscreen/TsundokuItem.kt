@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,6 +18,7 @@ import app.sanao1006.tsundoku.data.model.Book
 @Composable
 fun TsundokuItem(
     book: Book,
+    onDeleteButtonClick: () -> Unit,
     onItemClick: (id: Int) -> Unit
 ) {
     Card(
@@ -34,6 +36,11 @@ fun TsundokuItem(
                 truncateString(book.title, maxLength = 23),
                 truncateString(book.description),
                 Modifier.weight(0.7f)
+            )
+            TsundokuIcon(
+                icon = Icons.Default.Delete,
+                onIconClick = onDeleteButtonClick,
+                modifier = Modifier.weight(0.15f)
             )
         }
     }

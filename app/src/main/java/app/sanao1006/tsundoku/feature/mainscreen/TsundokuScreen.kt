@@ -17,11 +17,13 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import io.sanao1006.tsundoku.R
+import kotlinx.coroutines.launch
 
 @Composable
 fun TsundokuScreen(
@@ -30,6 +32,7 @@ fun TsundokuScreen(
     onItemClick: (id: Int) -> Unit,
 ) {
     val state by viewModel.tsundokuState.collectAsState()
+    val rememberCoroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -60,6 +63,9 @@ fun TsundokuScreen(
                     items(state.tsundokus) { book ->
                         TsundokuItem(
                             book = book,
+                            onDeleteButtonClick = {
+                                rememberCoroutineScope.launch { viewModel.deleteBook(bookId = book.id) }
+                            },
                             onItemClick = { id -> onItemClick(id) }
                         )
                     }

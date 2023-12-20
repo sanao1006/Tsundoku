@@ -35,4 +35,6 @@ class TsundokuScreenViewModel @Inject constructor(
             }
         }
     }
+
+    suspend fun deleteBook(bookId: Int) = tsundokuRepository.deleteBook(bookId = bookId)
 }
