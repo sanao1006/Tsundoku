@@ -4,9 +4,14 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [BookEntity::class],
+    entities = [
+        BookEntity::class,
+        CommentEntity::class,
+    ],
     version = 1
 )
 abstract class TsundokuDb : RoomDatabase() {
     abstract fun bookDao(): BookDao
+
+    abstract fun commentDao(): CommentDao
 }

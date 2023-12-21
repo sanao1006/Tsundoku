@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.sanao1006.tsundoku.data.di.TsundokuRepository
 import app.sanao1006.tsundoku.data.model.Book
+import app.sanao1006.tsundoku.data.model.Comment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -26,9 +27,18 @@ class TsundokuDetailScreenViewModel @Inject constructor(
     )
     val book = _book.asStateFlow()
 
+    private val _comments = MutableStateFlow<List<Comment>>(listOf())
+    val comments = _comments.asStateFlow()
+
     fun getBook(bookId: Int) = viewModelScope.launch {
         tsundokuRepository.getBook(bookId = bookId).collect {
             _book.value = it
+        }
+    }
+
+    fun getCommentsByBookId(bookId: Int) = viewModelScope.launch {
+        tsundokuRepository.getCommentsByBookId(bookId = bookId).collect {
+            _comments.value = it
         }
     }
 }
