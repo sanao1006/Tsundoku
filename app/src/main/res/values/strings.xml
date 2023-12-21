@@ -7,4 +7,11 @@
     <string name="pref_create_tsundoku_page_count">総ページ数を入力してください</string>
     <string name="create_tsundoku">作成！</string>
     <string name="description_when_tsundoku_empty">自分の積読を追加してみましょう！</string>
+    <string name="reading_progress">%s%%</string>
+    <string name="book_title">タイトル</string>
+    <string name="book_description">説明</string>
+    <string name="book_progress_percent">進捗率</string>
+    <string name="book_pages">(現在: %1$sページ、総ページ: %2$sページ)</string>
+    <string name="date_created">"　　登録日: %s"</string>
+    <string name="date_last_updated">最終更新日: %s</string>
 </resources>
