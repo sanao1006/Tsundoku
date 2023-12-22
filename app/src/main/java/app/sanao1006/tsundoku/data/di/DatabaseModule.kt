@@ -29,5 +29,5 @@ object DatabaseModule {
         context = context,
         klass = TsundokuDb::class.java,
         name = "tsundoku-database"
-    ).fallbackToDestructiveMigration().addMigrations(TsundokuDb.MIGRATE1TO2).build()
+    ).fallbackToDestructiveMigration().addMigrations(TsundokuDb.MIGRATE1TO2).addMigrations(TsundokuDb.MIGRATE2TO3).build()
 }

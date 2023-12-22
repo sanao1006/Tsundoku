@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "05b23f1b26ffb4f88d6095af5b58eb39",
+    "identityHash": "785e2a47f8b2921c53b36c14abd9fd32",
     "entities": [
       {
         "tableName": "books",
@@ -62,7 +62,7 @@
       },
       {
         "tableName": "comments",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`comment_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id` INTEGER NOT NULL, `comment` TEXT NOT NULL, `created_at` TEXT NOT NULL, `updated_at` TEXT NOT NULL, FOREIGN KEY(`comment_id`) REFERENCES `books`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`comment_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id` INTEGER NOT NULL, `comment` TEXT NOT NULL, `created_at` TEXT NOT NULL, `updated_at` TEXT NOT NULL, FOREIGN KEY(`id`) REFERENCES `books`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "commentId",
@@ -108,7 +108,7 @@
             "onDelete": "CASCADE",
             "onUpdate": "NO ACTION",
             "columns": [
-              "comment_id"
+              "id"
             ],
             "referencedColumns": [
               "id"
@@ -120,7 +120,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '05b23f1b26ffb4f88d6095af5b58eb39')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '785e2a47f8b2921c53b36c14abd9fd32')"
     ]
   }
 }

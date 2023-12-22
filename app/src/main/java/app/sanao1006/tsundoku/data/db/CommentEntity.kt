@@ -12,7 +12,7 @@ import app.sanao1006.tsundoku.data.model.Comment
         ForeignKey(
             entity = BookEntity::class,
             parentColumns = arrayOf("id"),
-            childColumns = arrayOf("comment_id"),
+            childColumns = arrayOf("id"),
             onDelete = ForeignKey.CASCADE
         )
     ],
