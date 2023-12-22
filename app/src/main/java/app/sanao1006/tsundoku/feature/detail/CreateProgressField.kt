@@ -96,7 +96,7 @@ fun CreateProgressField(
             OutlinedTextField(
                 value = "",
                 onValueChange = {},
-                label = { Text("現在のページ数") },
+                label = { Text(stringResource(id = R.string.progress_nowpage)) },
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Done
@@ -108,7 +108,7 @@ fun CreateProgressField(
             OutlinedTextField(
                 value = commentText,
                 onValueChange = onCommentTextChange,
-                label = { Text(text = "感想など") },
+                label = { Text(text = stringResource(id = R.string.progress_chiken)) },
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
                 ),

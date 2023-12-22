@@ -14,4 +14,6 @@
     <string name="book_pages">(現在: %1$sページ、総ページ: %2$sページ)</string>
     <string name="date_created">"　　登録日: %s"</string>
     <string name="date_last_updated">最終更新日: %s</string>
+    <string name="progress_nowpage">現在のページ数</string>
+    <string name="progress_chiken">感想や知見</string>
 </resources>
