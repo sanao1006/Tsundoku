@@ -3,7 +3,6 @@ package app.sanao1006.tsundoku.data.db
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.Index
 import androidx.room.PrimaryKey
 import app.sanao1006.tsundoku.data.model.Comment
 
@@ -17,7 +16,6 @@ import app.sanao1006.tsundoku.data.model.Comment
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index("id")]
 )
 data class CommentEntity(
     @PrimaryKey(autoGenerate = true)

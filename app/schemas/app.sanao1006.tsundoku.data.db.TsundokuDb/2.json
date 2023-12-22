@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "d3b6aa7204dcf215e5ec29a8ea176f01",
+    "identityHash": "05b23f1b26ffb4f88d6095af5b58eb39",
     "entities": [
       {
         "tableName": "books",
@@ -101,17 +101,7 @@
             "comment_id"
           ]
         },
-        "indices": [
-          {
-            "name": "index_comments_id",
-            "unique": false,
-            "columnNames": [
-              "id"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_comments_id` ON `${TABLE_NAME}` (`id`)"
-          }
-        ],
+        "indices": [],
         "foreignKeys": [
           {
             "table": "books",
@@ -130,7 +120,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd3b6aa7204dcf215e5ec29a8ea176f01')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '05b23f1b26ffb4f88d6095af5b58eb39')"
     ]
   }
 }
