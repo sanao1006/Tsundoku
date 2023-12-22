@@ -127,7 +127,9 @@ fun CreateProgressField(
             }
         }
         Spacer(modifier = Modifier.size(8.dp))
-        ProgressList(comments = comments)
+        if (comments.isNotEmpty()) {
+            ProgressList(comments = comments)
+        }
         Spacer(modifier = Modifier.size(16.dp))
     }
 }
