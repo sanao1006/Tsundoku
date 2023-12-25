@@ -19,9 +19,11 @@ fun TsundokuInfo(
             text = title,
             style = MaterialTheme.typography.h6
         )
-        Text(
-            text = description,
-            style = MaterialTheme.typography.body2
-        )
+        if (!description.isNullOrBlank()) {
+            Text(
+                text = description,
+                style = MaterialTheme.typography.body2
+            )
+        }
     }
 }
