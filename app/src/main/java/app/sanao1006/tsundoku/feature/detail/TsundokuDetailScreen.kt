@@ -1,5 +1,6 @@
 package app.sanao1006.tsundoku.feature.detail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -22,6 +24,7 @@ import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -45,7 +48,8 @@ fun TsundokuDetailScreen(
                     IconButton(onClick = onBackButtonClick) {
                         Icon(Icons.Default.ArrowBack, "")
                     }
-                }
+                },
+                backgroundColor = Color(0xfff2fbff)
             )
         },
     ) { innerPadding ->
@@ -55,7 +59,7 @@ fun TsundokuDetailScreen(
                 .padding(innerPadding),
         ) {
             Column(
-                modifier = modifier.padding(32.dp),
+                modifier = modifier.padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -66,41 +70,56 @@ fun TsundokuDetailScreen(
                         .align(Alignment.CenterHorizontally)
                 )
                 Spacer(modifier = Modifier.size(8.dp))
-                Column {
-                    Text(
-                        text = stringResource(id = R.string.book_title),
-                        color = Color(0xFF18864B),
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = book.title, style = Typography.h1)
-                    Divider(
-                        color = Color.Gray,
-                        modifier = Modifier
-                            .height(1.dp)
-                            .fillMaxWidth()
-                    )
-                }
-                if (!book.description.isNullOrBlank()) {
-                    Column(horizontalAlignment = Alignment.Start) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(Color.White)
+                ) {
+                    Column(modifier = Modifier.padding(12.dp)) {
                         Text(
-                            text = stringResource(id = R.string.book_description),
+                            text = stringResource(id = R.string.book_title),
                             color = Color(0xFF18864B),
                             fontWeight = FontWeight.Bold
                         )
-                        Text(book.description)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = book.title, style = Typography.h1)
                         Divider(
                             color = Color.Gray,
                             modifier = Modifier
                                 .height(1.dp)
                                 .fillMaxWidth()
                         )
-                        Spacer(modifier = Modifier.size(8.dp))
+                    }
+                    if (!book.description.isNullOrBlank()) {
+                        Column(
+                            modifier = Modifier.padding(12.dp),
+                            horizontalAlignment = Alignment.Start
+                        ) {
+                            Text(
+                                text = stringResource(id = R.string.book_description),
+                                color = Color(0xFF18864B),
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(book.description)
+                            Divider(
+                                color = Color.Gray,
+                                modifier = Modifier
+                                    .height(1.dp)
+                                    .fillMaxWidth()
+                            )
+                            Spacer(modifier = Modifier.size(8.dp))
+                        }
                     }
                 }
                 Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(Color.White),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    Spacer(modifier = Modifier.size(4.dp))
                     Text(
                         text = stringResource(id = R.string.book_progress_percent),
                         fontWeight = FontWeight.Bold,
@@ -131,6 +150,7 @@ fun TsundokuDetailScreen(
                         Text(stringResource(id = R.string.date_last_updated, book.updatedAt))
                         Text(stringResource(id = R.string.date_created, book.createAt))
                     }
+                    Spacer(modifier = Modifier.size(4.dp))
                 }
             }
         }
