@@ -3,6 +3,7 @@ package app.sanao1006.tsundoku.data.di
 import android.content.Context
 import androidx.room.Room
 import app.sanao1006.tsundoku.data.db.BookDao
+import app.sanao1006.tsundoku.data.db.CommentDao
 import app.sanao1006.tsundoku.data.db.TsundokuDb
 import dagger.Module
 import dagger.Provides
@@ -18,6 +19,9 @@ object DatabaseModule {
     fun provideRoomDao(db: TsundokuDb): BookDao = db.bookDao()
 
     @Provides
+    fun provideCommentDao(db: TsundokuDb): CommentDao = db.commentDao()
+
+    @Provides
     @Singleton
     fun provideTsundokuDatabase(
         @ApplicationContext context: Context
@@ -25,5 +29,5 @@ object DatabaseModule {
         context = context,
         klass = TsundokuDb::class.java,
         name = "tsundoku-database"
-    ).fallbackToDestructiveMigration().build()
+    ).fallbackToDestructiveMigration().addMigrations(TsundokuDb.MIGRATE1TO2).addMigrations(TsundokuDb.MIGRATE2TO3).build()
 }

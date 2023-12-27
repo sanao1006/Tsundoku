@@ -68,11 +68,12 @@ private fun TsundokuApp(
             )
         ) { entry ->
             val bookId = entry.arguments?.getInt("book_id")
-            tsundokuDetailScreenViewModel.getBook(bookId!!)
-            val tsundoku by tsundokuDetailScreenViewModel.book.collectAsState()
             TsundokuDetailScreen(
-                book = tsundoku,
-                onBackButtonClick = { navController.popBackStack() }
+                viewModel = tsundokuDetailScreenViewModel,
+                bookId = bookId ?: 0,
+                onBackButtonClick = { navController.popBackStack() },
+                onButtonClick = { tsundokuDetailScreenViewModel.insertComment(bookId!!) },
+                onCommentTextChange = tsundokuDetailScreenViewModel::onChangeCommentText
             )
         }
         composable("create") {

@@ -6,6 +6,11 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    id("androidx.room")
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 android {
@@ -21,13 +26,6 @@ android {
 
         vectorDrawables {
             useSupportLibrary = true
-        }
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments["room.schemaLocation"] = "$projectDir/schemas".toString()
-                arguments["room.incremental"] = "true"
-                arguments["room.expandProjection"] = "true"
-            }
         }
     }
 
