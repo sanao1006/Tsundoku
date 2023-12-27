@@ -8,7 +8,7 @@ import app.sanao1006.tsundoku.data.model.Book
 import app.sanao1006.tsundoku.data.model.Comment
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,9 +19,9 @@ class TsundokuRepository @Inject constructor(
     private val commentDao: CommentDao,
     @IODispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
-    fun getBooks(): Flow<List<Book>> = bookDao.getBooks().map { it.map(BookEntity::toBook) }
+    fun getBooks(): Flow<List<Book>> = bookDao.getBooks().mapNotNull { it.mapNotNull { bookEntity -> bookEntity?.toBook() } }
 
-    fun getBook(bookId: Int): Flow<Book> = bookDao.getBook(bookId).map { it.toBook() }
+    fun getBook(bookId: Int): Flow<Book> = bookDao.getBook(bookId).mapNotNull { it?.toBook() }
 
     suspend fun insertBook(book: BookEntity) = withContext(ioDispatcher) {
         bookDao.insertBook(book = book)

@@ -23,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import app.sanao1006.tsundoku.data.desiginsystem.Typography
@@ -40,8 +41,9 @@ fun TsundokuScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Tsundoku") },
-            )
+                backgroundColor = Color(0xFFE5F7FF),
+                elevation = 0.dp
+            ) {}
         },
         floatingActionButton = {
             FloatingActionButton(onClick = onFabClick) {
@@ -61,8 +63,17 @@ fun TsundokuScreen(
         ) {
             if (state.tsundokus.isEmpty()) {
                 Column {
-                    Icon(imageVector = Icons.Default.PostAdd, contentDescription = "", modifier = Modifier.align(Alignment.CenterHorizontally).size(64.dp))
-                    Text(text = stringResource(R.string.description_when_tsundoku_empty), style = Typography.h6)
+                    Icon(
+                        imageVector = Icons.Default.PostAdd,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                            .size(64.dp)
+                    )
+                    Text(
+                        text = stringResource(R.string.description_when_tsundoku_empty),
+                        style = Typography.h6
+                    )
                 }
             } else {
                 LazyColumn(

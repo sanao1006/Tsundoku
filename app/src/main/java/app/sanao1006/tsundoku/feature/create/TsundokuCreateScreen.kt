@@ -14,6 +14,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -22,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -53,7 +55,8 @@ fun TsundokuCreateScreen(
                     IconButton(onClick = onBackButtonClick) {
                         Icon(Icons.Default.ArrowBack, "")
                     }
-                }
+                },
+                backgroundColor = Color(0xfff2fbff)
             )
         }
     ) { innerPadding ->
@@ -65,7 +68,11 @@ fun TsundokuCreateScreen(
                     label = { Text(stringResource(R.string.pref_create_tsundoku_title)) },
                     modifier = Modifier
                         .padding(16.dp)
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        backgroundColor = Color(0xffFFFFFF),
+                        unfocusedLabelColor = Color.Black
+                    )
                 )
 
                 OutlinedTextField(
@@ -74,13 +81,21 @@ fun TsundokuCreateScreen(
                     label = { Text(stringResource(R.string.pref_create_tsundoku_description)) },
                     modifier = Modifier
                         .padding(16.dp)
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        backgroundColor = Color(0xffFFFFFF),
+                        unfocusedLabelColor = Color.Black
+                    )
                 )
 
                 OutlinedTextField(
                     value = input.totalPage,
                     onValueChange = onTotalPageValueChange,
                     label = { Text(stringResource(R.string.pref_create_tsundoku_page_count)) },
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        backgroundColor = Color(0xffFFFFFF),
+                        unfocusedLabelColor = Color.Black
+                    ),
                     keyboardOptions = KeyboardOptions.Default.copy(
                         keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Done
